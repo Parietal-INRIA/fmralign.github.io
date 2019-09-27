@@ -1,0 +1,249 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>fmralign: fMRI alignment &#8212; fMRI alignment</title>
+    <link rel="stylesheet" href="../_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gallery.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="search" title="Search" href="../search.html" />
+<meta content="True" name="HandheldFriendly">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<meta name="keywords" content="nistats, neuroimaging, python, neuroscience, statistics">
+
+
+
+<script type="text/javascript">
+function updateTopMenuPosition(height, width) {
+    if($(window).scrollTop() > height && $(window).outerWidth() > 1024) {
+        //begin to scroll
+        $('.related-wrapper').css("z-index", 1000)
+        $('.related-wrapper').css("position", "sticky")
+        $('.related-wrapper').css("top", 0)
+        $('.related-wrapper').css("width", width)
+    } else {
+        //lock it back into place
+        $('.related-wrapper').css("position", "relative")
+        $('.related-wrapper').css("top", 0)
+    }
+}
+
+$(function() {
+    var banner_height = $('#logo-banner').outerHeight()
+    var banner_width = $('#logo-banner').outerWidth()
+    var width = $('.related-wrapper').css("height", $('.related').outerHeight())
+
+    updateTopMenuPosition(banner_height, width)
+
+    $(window).scroll(function(event) {
+        updateTopMenuPosition(banner_height, width)
+    });
+
+    $(window).resize(function(event) {
+        var banner_width = $('#logo-banner').outerWidth()
+        var menu_height = $('.related').outerHeight()
+        $('.related').css("width", banner_width)
+        $('.related-wrapper').css("height", menu_height)
+        updateTopMenuPosition(banner_height, width)
+    })
+});
+</script>
+<script type="text/javascript">
+function updateSideBarPosition(top, offset, sections) {
+    var pos = $(window).scrollTop()
+    // Lock the table of content to a fixed position once we scroll enough
+    var topShift = 2 * offset
+    if(pos > top + topShift + 1) {
+        // begin to scroll with sticky menu bar
+        var topShift = -topShift + 1
+        if ($(window).outerWidth() < 1024) {
+            // compensate top menu that disappears
+            topShift -= offset + 1
+        }
+        $('.sphinxsidebarwrapper').css("position", "fixed")
+        $('.sphinxsidebarwrapper').css("top", topShift)
+    }
+    else {
+        //lock it back into place
+        $('.sphinxsidebarwrapper').css("position", "relative")
+        $('.sphinxsidebarwrapper').css("top",0)
+    }
+
+    // Highlight the current section
+    i = 0
+    current_section = 0
+    $('a.internal').removeClass('active')
+    for(i in sections) {
+        if(sections[i] > pos) {
+            break
+        };
+        if($('a.internal[href$="' + i + '"]').is(':visible')){
+            current_section = i
+        };
+    }
+    $('a.internal[href$="' + current_section + '"]').addClass('active')
+    $('a.internal[href$="' + current_section + '"]').parent().addClass('active')
+}
+
+$(function () {
+    // Lock the table of content to a fixed position once we scroll enough
+    var top = 105 + $('.sphinxsidebarwrapper').offset().top - parseFloat($('.sphinxsidebarwrapper').css('margin-top').replace(/auto/, 0)),
+        sections = {},
+        i        = 0,
+	url	 = document.URL.replace(/#.*$/, ""),
+	current_section = 0;
+
+    // Grab positions of our sections
+    $('.headerlink').each(function(){
+        sections[this.href.replace(url, '')] = $(this).offset().top - 50;
+    });
+
+    $(window).scroll(function(event) {
+	var pos   = $(window).scrollTop();
+	// Lock the table of content to a fixed position once we scroll enough
+	if(pos > top){
+	    //begin to scroll
+	    $('.sphinxsidebarwrapper').css("position", "fixed");
+	    $('.sphinxsidebarwrapper').css("top", -105);
+	}
+	else{
+	    //lock it back into place
+	    $('.sphinxsidebarwrapper').css("position", "relative");
+	    $('.sphinxsidebarwrapper').css("top",0);
+	}
+
+	// Highlight the current section
+	$('a.internal').removeClass('active');
+        for(i in sections){
+            if(sections[i] > pos){
+		break;
+            };
+	    if($('a.internal[href$="' + i + '"]').is(':visible')){
+		current_section = i;
+	    };
+        }
+	$('a.internal[href$="' + current_section + '"]').addClass('active');
+    });
+
+});
+</script>
+
+
+<script type="text/javascript">
+
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-41920728-1']);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+
+  </head><body>
+<div id="logo-banner">
+  <!-- A tag cloud to make it easy for people to find what they are
+                         looking for -->
+
+  <div class="banner">
+    <h1>fmralign:</h1>
+    <h2>Functional MRI alignment in Python</h2>
+  </div>
+  <div class="search_form">
+    <div id="cse" style="width: 100%;"></div>
+    <script src="http://www.google.com/jsapi" type="text/javascript"></script>
+    <script type="text/javascript">
+      google.load('search', '1', {language : 'en'});
+      google.setOnLoadCallback(function() {
+      var customSearchControl = new google.search.CustomSearchControl('014136483057745874622:r-npolb1uki');
+      customSearchControl.setResultSetSize(google.search.Search.FILTERED_CSE_RESULTSET);
+      var options = new google.search.DrawOptions();
+      options.setAutoComplete(true);
+      customSearchControl.draw('cse', options);
+      }, true);
+    </script>
+  </div>
+</div>
+
+
+
+<div class=related-wrapper>
+    
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a></li>
+<li><a href="../index.html">Home</a> |&nbsp;</li>
+<li><a href="../user_guide.html">User Guide</a> |&nbsp;</li>
+<li><a href="index.html">Examples</a> |&nbsp;</li>
+<li><a href="../modules/reference.html">Reference</a> |&nbsp;</li>
+<li id="navbar-about"><a href="../authors.html">About</a>|&nbsp;</li>
+ 
+      </ul>
+    </div>
+</div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+
+
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="computation-times">
+<span id="sphx-glr-auto-examples-sg-execution-times"></span><h1>Computation times<a class="headerlink" href="#computation-times" title="Permalink to this headline">¶</a></h1>
+<p><strong>05:17.068</strong> total execution time for <strong>auto_examples</strong> files:</p>
+<ul class="simple">
+<li><p><strong>04:06.542</strong>: <a class="reference internal" href="plot_template_alignment.html#sphx-glr-auto-examples-plot-template-alignment-py"><span class="std std-ref">Template-based prediction</span></a> (<code class="docutils literal notranslate"><span class="pre">plot_template_alignment.py</span></code>)</p></li>
+<li><p><strong>00:35.908</strong>: <a class="reference internal" href="plot_alignment_methods_benchmark.html#sphx-glr-auto-examples-plot-alignment-methods-benchmark-py"><span class="std std-ref">Alignment methods benchmark (pairwise ROI case)</span></a> (<code class="docutils literal notranslate"><span class="pre">plot_alignment_methods_benchmark.py</span></code>)</p></li>
+<li><p><strong>00:21.241</strong>: <a class="reference internal" href="plot_pairwise_alignment.html#sphx-glr-auto-examples-plot-pairwise-alignment-py"><span class="std std-ref">Pairwise functional alignment</span></a> (<code class="docutils literal notranslate"><span class="pre">plot_pairwise_alignment.py</span></code>)</p></li>
+<li><p><strong>00:09.719</strong>: <a class="reference internal" href="plot_pairwise_roi_alignment.html#sphx-glr-auto-examples-plot-pairwise-roi-alignment-py"><span class="std std-ref">Pairwise functional alignment on a ROI</span></a> (<code class="docutils literal notranslate"><span class="pre">plot_pairwise_roi_alignment.py</span></code>)</p></li>
+<li><p><strong>00:03.658</strong>: <a class="reference internal" href="plot_alignment_simulated_2D_data.html#sphx-glr-auto-examples-plot-alignment-simulated-2d-data-py"><span class="std std-ref">Alignment on simulated 2D data</span></a> (<code class="docutils literal notranslate"><span class="pre">plot_alignment_simulated_2D_data.py</span></code>)</p></li>
+</ul>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+
+    <div class="footer">
+            &copy; The fmralign developers 2018-2019.
+          Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 2.2.0.
+        <span style="padding-left: 5ex;">
+          <a href="../_sources/auto_examples/sg_execution_times.rst.txt"
+        	 rel="nofollow">Show this page source</a>
+        </span>
+    </div>
+  </body>
+</html>
